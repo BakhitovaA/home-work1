@@ -57,7 +57,7 @@ class PokemonList extends Array {
         var pokWithMaxLvl = Math.max(...this);
         for (var pokemon of this) {
             if (pokemon.getLevel == pokWithMaxLvl) {
-                console.log("Первый покемон максимального уровня: " + pokemon.getName + ' ' + pokemon.getLevel);
+                console.log("Покемон максимального уровня: " + pokemon.getName + ' ' + pokemon.getLevel);
             }
         } 
     }
@@ -86,11 +86,3 @@ for (var pokemon of lost) {
 	}
 i++;
 }
-
-//Вывод информации
-console.log("Список покемонов Lost: ");
-lost.show();
-lost.max();
-console.log("Список покемонов Found: ");
-found.show();
-found.max();
