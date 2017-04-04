@@ -21,8 +21,6 @@ class Pokemon {
 		return this.level;
 	}
     
-//7.Переопределите и используйте метод valueOf у покемонов, для решения этой задачи. - используется в методе max ().
-
     valueOf() {
         return this.level;
     } 
@@ -51,11 +49,8 @@ class PokemonList extends Array {
 //7. Добавить спискам покемонов метод max, который возвращает покемона максимального уровня.
     
     max (){  
-        var pokWithMaxLvl = Math.max(...this);
         for (var pokemon of this) {
-            if (pokemon.getLevel == pokWithMaxLvl) {
-                console.log("Покемон максимального уровня: " + pokemon.getName + ' ' + pokemon.getLevel);
-            }
+            if (pokemon.getLevel == Math.max(...this)) return pokemon;
         } 
     }
 }
@@ -73,11 +68,40 @@ lost.add ("Chingling", 1);
 found.add ("Arceus", 9);
 found.add ("Oshawott", 5);
 
+//Добавленная функция, возвращающая покемона максимального уровня с помощью метода find
+function max2(element, index, array) {
+    if (element.getLevel == Math.max(...array)) {
+        return element;
+    }
+}
+
 //6. Перевести одного из покемонов из списка lost в список found
 
+/* Старый метод 
 for (var i = 0; i < lost.length; i++) {
 	if (lost[i].getName == "Bulbasaur") {
 		found.add(lost[i].getName, lost[i].getLevel);
 		lost.splice(i,1);
 	}
 }
+*/
+
+//Добавленная функция, переводящая покемона в другой массив с помощью метода findIndex
+function change(element, index, array) {
+    if (index == 2) {
+        console.log("Переводим покемона: " + array[index].getName + ' ' + array[index].getLevel)
+		found.add(array[index].getName, array[index].getLevel);
+		array.splice(index,1);
+	}
+}
+
+//Проверка работоспособности
+lost.show();
+console.log("Покемон максимального уровня: " + lost.max().getName + ' ' + lost.max().getLevel);
+console.log("Покемон максимального уровня: " + lost.find(max2).getName + ' ' + lost.find(max2).getLevel)
+found.show();
+console.log("Покемон максимального уровня: " + found.max().getName + ' ' + found.max().getLevel);
+console.log("Покемон максимального уровня: " + found.find(max2).getName + ' ' + found.find(max2).getLevel)
+lost.findIndex(change)
+lost.show();
+found.show();
